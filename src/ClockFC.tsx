@@ -24,7 +24,7 @@ const ClockFC: FC<ClockProps> = props => {
   } = getSecondsPercentage(date);
 
   return (
-    <div style={{ width: "250px" }}>
+    <div>
       <ProgressCircle radius={100} percentage={minutePercentage}>
         {seconds} s
       </ProgressCircle>
