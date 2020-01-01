@@ -4,11 +4,6 @@ import { getSecondsPercentage } from "./get-seconds-percentage";
 import ProgressCircle from "./ProgressCircle";
 import { useInterval } from "./useInterval";
 
-interface CircleArc {
-  radius: number;
-  percentage: number;
-}
-
 interface ClockProps {}
 
 const ClockFC: FC<ClockProps> = props => {
