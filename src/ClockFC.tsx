@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { render } from "react-dom";
 import { getSecondsPercentage } from "./get-seconds-percentage";
 import ProgressCircle from "./ProgressCircle";
+import { useInterval } from "./useInterval";
 
 interface CircleArc {
   radius: number;
@@ -15,12 +16,7 @@ const ClockFC: FC<ClockProps> = props => {
 
   const tick = () => setDate(new Date());
 
-  useEffect(() => {
-    // gets called on after the first render
-    const id = window.setInterval(tick, 1000 / 60);
-    // gets called when component gets dismounted
-    return () => window.clearInterval(id);
-  }, []);
+  useInterval(tick, 1000 / 60);
 
   const seconds = date.getSeconds();
   const minutes = date.getMinutes();
