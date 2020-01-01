@@ -20,18 +20,18 @@ const ClockFC: FC<ClockProps> = props => {
   const {
     hourPercentage,
     minutePercentage,
-    secondPercentage
+    dayPercentage
   } = getSecondsPercentage(date);
 
   return (
     <div style={{ width: "250px" }}>
-      <ProgressCircle radius={100} percentage={secondPercentage}>
+      <ProgressCircle radius={100} percentage={minutePercentage}>
         {seconds} s
       </ProgressCircle>
-      <ProgressCircle radius={150} percentage={minutePercentage}>
+      <ProgressCircle radius={150} percentage={hourPercentage}>
         {minutes} m
       </ProgressCircle>
-      <ProgressCircle radius={200} percentage={hourPercentage}>
+      <ProgressCircle radius={200} percentage={dayPercentage}>
         {hours} h
       </ProgressCircle>
     </div>
