@@ -5,68 +5,12 @@ import ProgressCircle from "./ProgressCircle";
 
 import "./styles.css";
 
-interface CircleArc {
-  radius: number;
-  percentage: number;
-}
+import { ClockComponent } from "./ClockClass";
+import { ClockFC } from "./ClockFC";
 
-interface ClockProps {}
-interface ClockState {
-  date: Date;
-}
-
-class Clock extends React.Component<ClockProps, ClockState> {
-  timerID = 0;
-  constructor(props: ClockProps) {
-    super(props);
-    this.state = {
-      date: new Date()
-    };
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  componentDidMount() {
-    // initiate timer that would run the tick
-    this.timerID = setInterval(() => this.tick(), 1000 / 60);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  render() {
-    // compute data from state
-    const date = this.state.date;
-    const seconds = date.getSeconds();
-    const minutes = date.getMinutes();
-    const hours = date.getHours();
-
-    const {
-      hourPercentage,
-      minutePercentage,
-      secondPercentage
-    } = getSecondsPercentage(date);
-
-    return (
-      <div>
-        <ProgressCircle radius={100} percentage={secondPercentage}>
-          {seconds} s
-        </ProgressCircle>
-        <ProgressCircle radius={150} percentage={minutePercentage}>
-          {minutes} m
-        </ProgressCircle>
-        <ProgressCircle radius={200} percentage={hourPercentage}>
-          {hours} h
-        </ProgressCircle>
-      </div>
-    );
-  }
-}
-
-const rootElement = document.getElementById("root");
-render(<Clock />, rootElement);
+const classComponentRootElement = document.getElementById("ClassComponentRoot");
+const functionalComponentRootElement = document.getElementById(
+  "FunctionalComponentRoot"
+);
+render(<ClockComponent />, classComponentRootElement);
+render(<ClockFC />, functionalComponentRootElement);
