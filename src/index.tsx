@@ -87,7 +87,7 @@ class Clock extends React.Component<ClockProps, ClockState> {
           />
           <path
             className="circle"
-            stroke-dasharray={`${this.state.secondsCircle.percentage}, 100`}
+            strokeDasharray={`${this.state.secondsCircle.percentage}, 100`}
             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
           />
           <text x="18" y="20.35" className="percentage">
@@ -105,7 +105,7 @@ class Clock extends React.Component<ClockProps, ClockState> {
           />
           <path
             className="circle"
-            stroke-dasharray={`${this.state.minutesCircle.percentage}, 100`}
+            strokeDasharray={`${this.state.minutesCircle.percentage}, 100`}
             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
           />
           <text x="18" y="20.35" className="percentage">
@@ -123,7 +123,7 @@ class Clock extends React.Component<ClockProps, ClockState> {
           />
           <path
             className="circle"
-            stroke-dasharray={`${this.state.hoursCircle.percentage}, 100`}
+            strokeDasharray={`${this.state.hoursCircle.percentage}, 100`}
             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
           />
           <text x="18" y="20.35" className="percentage">
