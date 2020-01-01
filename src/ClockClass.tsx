@@ -51,7 +51,7 @@ export class ClockComponent extends React.Component<ClockProps, ClockState> {
     } = getSecondsPercentage(date);
 
     return (
-      <div style={{ width: "250px" }}>
+      <div>
         <ProgressCircle radius={100} percentage={minutePercentage}>
           {seconds} s
         </ProgressCircle>
