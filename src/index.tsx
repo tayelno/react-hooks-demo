@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-
+import { getSecondsPercentage } from "./get-seconds-percentage";
 import "./styles.css";
 
 interface ClockProps {}
@@ -29,40 +29,33 @@ class Clock extends React.Component<ClockProps, ClockState> {
       hoursCircle: { radius: 200, percentage: 0 }
     };
   }
+
   tick() {
     const date = new Date();
-    // m = min * SECONDS_IN_MINUTE
-    const seconds = date.getSeconds();
-
-    const secondsPercentage = (100 * seconds) / SECONDS_IN_MINUTE;
-    const minutes = date.getMinutes();
-    const minutesPercentage =
-      (100 * (minutes * SECONDS_IN_MINUTE + seconds)) /
-      (SECONDS_IN_MINUTE * MINUTES_IN_HOUR);
-    const hours = date.getHours();
+    const {
+      hourPercentage,
+      minutePercentage,
+      secondPercentage
+    } = getSecondsPercentage(date);
     this.setState({
-      ...this.state,
       date,
-      secondsCircle: {
-        ...this.state.secondsCircle,
-        percentage: secondsPercentage
+      hoursCircle: {
+        ...this.state.hoursCircle,
+        percentage: hourPercentage * 100
       },
       minutesCircle: {
         ...this.state.minutesCircle,
-        percentage: minutesPercentage
+        percentage: minutePercentage * 100
       },
-      hoursCircle: {
-        ...this.state.hoursCircle,
-        percentage:
-          (100 *
-            (hours * MINUTES_IN_HOUR * SECONDS_IN_MINUTE +
-              minutes * SECONDS_IN_MINUTE +
-              seconds)) /
-          (SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY)
+      secondsCircle: {
+        ...this.state.secondsCircle,
+        percentage: secondPercentage * 100
       }
     });
   }
+
   componentDidMount() {
+    // initiate timer that would run the tick
     this.timerID = setInterval(() => this.tick(), 1000 / 60);
   }
 
@@ -135,5 +128,6 @@ class Clock extends React.Component<ClockProps, ClockState> {
     );
   }
 }
+
 const rootElement = document.getElementById("root");
 render(<Clock />, rootElement);
