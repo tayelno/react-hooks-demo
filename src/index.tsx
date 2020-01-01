@@ -41,15 +41,15 @@ class Clock extends React.Component<ClockProps, ClockState> {
       date,
       hoursCircle: {
         ...this.state.hoursCircle,
-        percentage: hourPercentage * 100
+        percentage: hourPercentage
       },
       minutesCircle: {
         ...this.state.minutesCircle,
-        percentage: minutePercentage * 100
+        percentage: minutePercentage
       },
       secondsCircle: {
         ...this.state.secondsCircle,
-        percentage: secondPercentage * 100
+        percentage: secondPercentage
       }
     });
   }
