@@ -70,60 +70,24 @@ class Clock extends React.Component<ClockProps, ClockState> {
 
     return (
       <div>
-        <svg
-          viewBox="0 0 36 36"
-          className="circular-chart orange"
-          width={this.state.secondsCircle.radius}
+        <ProgressCircle
+          radius={this.state.secondsCircle.radius}
+          percentage={this.state.secondsCircle.percentage}
         >
-          <path
-            className="circle-bg"
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path
-            className="circle"
-            strokeDasharray={`${this.state.secondsCircle.percentage}, 100`}
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="20.35" className="percentage">
-            {seconds} s
-          </text>
-        </svg>
-        <svg
-          viewBox="0 0 36 36"
-          className="circular-chart orange"
-          width={this.state.minutesCircle.radius}
+          {seconds} s
+        </ProgressCircle>
+        <ProgressCircle
+          radius={this.state.minutesCircle.radius}
+          percentage={this.state.minutesCircle.percentage}
         >
-          <path
-            className="circle-bg"
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path
-            className="circle"
-            strokeDasharray={`${this.state.minutesCircle.percentage}, 100`}
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="20.35" className="percentage">
-            {minutes} m
-          </text>
-        </svg>
-        <svg
-          viewBox="0 0 36 36"
-          className="circular-chart orange"
-          width={this.state.hoursCircle.radius}
+          {minutes} m
+        </ProgressCircle>
+        <ProgressCircle
+          radius={this.state.hoursCircle.radius}
+          percentage={this.state.hoursCircle.percentage}
         >
-          <path
-            className="circle-bg"
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <path
-            className="circle"
-            strokeDasharray={`${this.state.hoursCircle.percentage}, 100`}
-            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-          />
-          <text x="18" y="20.35" className="percentage">
-            {hours} h
-          </text>
-        </svg>
+          {hours} h
+        </ProgressCircle>
       </div>
     );
   }
