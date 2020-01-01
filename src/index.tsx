@@ -1,7 +1,14 @@
 import React from "react";
 import { render } from "react-dom";
 import { getSecondsPercentage } from "./get-seconds-percentage";
+import ProgressCircle from "./ProgressCircle";
+
 import "./styles.css";
+
+interface CircleArc {
+  radius: number;
+  percentage: number;
+}
 
 interface ClockProps {}
 interface ClockState {
@@ -10,13 +17,6 @@ interface ClockState {
   minutesCircle: CircleArc;
   hoursCircle: CircleArc;
 }
-interface CircleArc {
-  radius: number;
-  percentage: number;
-}
-const SECONDS_IN_MINUTE = 60;
-const MINUTES_IN_HOUR = 60;
-const HOURS_IN_DAY = 24;
 
 class Clock extends React.Component<ClockProps, ClockState> {
   timerID = 0;
