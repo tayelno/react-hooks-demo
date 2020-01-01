@@ -19,8 +19,8 @@ const MINUTES_IN_HOUR = 60;
 const HOURS_IN_DAY = 24;
 
 class Clock extends React.Component<ClockProps, ClockState> {
-  timerID: number;
-  constructor(props) {
+  timerID = 0;
+  constructor(props: ClockProps) {
     super(props);
     this.state = {
       date: new Date(),
@@ -29,21 +29,11 @@ class Clock extends React.Component<ClockProps, ClockState> {
       hoursCircle: { radius: 200, percentage: 0 }
     };
   }
-
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000 / 60);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
   tick() {
     const date = new Date();
     const seconds = date.getSeconds();
     const minutes = date.getMinutes();
     const hours = date.getHours();
-
     this.setState({
       ...this.state,
       date,
@@ -70,6 +60,13 @@ class Clock extends React.Component<ClockProps, ClockState> {
             (MINUTES_IN_HOUR * HOURS_IN_DAY)
       }
     });
+  }
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000 / 60);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
   }
 
   render() {
