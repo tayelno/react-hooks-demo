@@ -79,8 +79,6 @@ class Clock extends React.Component<ClockProps, ClockState> {
 
     return (
       <div>
-        <h1>Hello, I am Clock!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
         <svg
           viewBox="0 0 36 36"
           className="circular-chart orange"
