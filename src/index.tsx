@@ -13,9 +13,6 @@ interface CircleArc {
 interface ClockProps {}
 interface ClockState {
   date: Date;
-  secondsCircle: CircleArc;
-  minutesCircle: CircleArc;
-  hoursCircle: CircleArc;
 }
 
 class Clock extends React.Component<ClockProps, ClockState> {
@@ -23,34 +20,13 @@ class Clock extends React.Component<ClockProps, ClockState> {
   constructor(props: ClockProps) {
     super(props);
     this.state = {
-      date: new Date(),
-      secondsCircle: { radius: 100, percentage: 0 },
-      minutesCircle: { radius: 150, percentage: 0 },
-      hoursCircle: { radius: 200, percentage: 0 }
+      date: new Date()
     };
   }
 
   tick() {
-    const date = new Date();
-    const {
-      hourPercentage,
-      minutePercentage,
-      secondPercentage
-    } = getSecondsPercentage(date);
     this.setState({
-      date,
-      hoursCircle: {
-        ...this.state.hoursCircle,
-        percentage: hourPercentage * 100
-      },
-      minutesCircle: {
-        ...this.state.minutesCircle,
-        percentage: minutePercentage * 100
-      },
-      secondsCircle: {
-        ...this.state.secondsCircle,
-        percentage: secondPercentage * 100
-      }
+      date: new Date()
     });
   }
 
@@ -64,28 +40,27 @@ class Clock extends React.Component<ClockProps, ClockState> {
   }
 
   render() {
-    const seconds = this.state.date.getSeconds();
-    const minutes = this.state.date.getMinutes();
-    const hours = this.state.date.getHours();
+    // compute data from state
+    const date = this.state.date;
+    const seconds = date.getSeconds();
+    const minutes = date.getMinutes();
+    const hours = date.getHours();
+
+    const {
+      hourPercentage,
+      minutePercentage,
+      secondPercentage
+    } = getSecondsPercentage(date);
 
     return (
       <div>
-        <ProgressCircle
-          radius={this.state.secondsCircle.radius}
-          percentage={this.state.secondsCircle.percentage}
-        >
+        <ProgressCircle radius={100} percentage={secondPercentage}>
           {seconds} s
         </ProgressCircle>
-        <ProgressCircle
-          radius={this.state.minutesCircle.radius}
-          percentage={this.state.minutesCircle.percentage}
-        >
+        <ProgressCircle radius={150} percentage={minutePercentage}>
           {minutes} m
         </ProgressCircle>
-        <ProgressCircle
-          radius={this.state.hoursCircle.radius}
-          percentage={this.state.hoursCircle.percentage}
-        >
+        <ProgressCircle radius={200} percentage={hourPercentage}>
           {hours} h
         </ProgressCircle>
       </div>
