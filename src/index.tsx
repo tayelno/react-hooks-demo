@@ -1,7 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-import { getSecondsPercentage } from "./get-seconds-percentage";
-import ProgressCircle from "./ProgressCircle";
 
 import "./styles.css";
 
