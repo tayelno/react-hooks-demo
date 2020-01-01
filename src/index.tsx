@@ -31,33 +31,34 @@ class Clock extends React.Component<ClockProps, ClockState> {
   }
   tick() {
     const date = new Date();
+    // m = min * SECONDS_IN_MINUTE
     const seconds = date.getSeconds();
+
+    const secondsPercentage = (100 * seconds) / SECONDS_IN_MINUTE;
     const minutes = date.getMinutes();
+    const minutesPercentage =
+      (100 * (minutes * SECONDS_IN_MINUTE + seconds)) /
+      (SECONDS_IN_MINUTE * MINUTES_IN_HOUR);
     const hours = date.getHours();
     this.setState({
       ...this.state,
       date,
       secondsCircle: {
         ...this.state.secondsCircle,
-        percentage: (seconds * 100) / SECONDS_IN_MINUTE
+        percentage: secondsPercentage
       },
       minutesCircle: {
         ...this.state.minutesCircle,
-        percentage:
-          (minutes * 100) / MINUTES_IN_HOUR +
-          (seconds * 100) /
-            SECONDS_IN_MINUTE /
-            (SECONDS_IN_MINUTE * MINUTES_IN_HOUR)
+        percentage: minutesPercentage
       },
       hoursCircle: {
         ...this.state.hoursCircle,
         percentage:
-          (hours * 100) / HOURS_IN_DAY +
-          ((minutes * 100) / MINUTES_IN_HOUR +
-            (seconds * 100) /
-              SECONDS_IN_MINUTE /
-              (SECONDS_IN_MINUTE * MINUTES_IN_HOUR)) /
-            (MINUTES_IN_HOUR * HOURS_IN_DAY)
+          (100 *
+            (hours * MINUTES_IN_HOUR * SECONDS_IN_MINUTE +
+              minutes * SECONDS_IN_MINUTE +
+              seconds)) /
+          (SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY)
       }
     });
   }
