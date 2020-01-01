@@ -1,7 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 import { getSecondsPercentage } from "./get-seconds-percentage";
-import ProgressCircle from "./ProgressCircle";
 
 import "./styles.css";
 
@@ -35,21 +34,21 @@ class Clock extends React.Component<ClockProps, ClockState> {
     const {
       hourPercentage,
       minutePercentage,
-      secondPercentage
+      dayPercentage
     } = getSecondsPercentage(date);
     this.setState({
       date,
       hoursCircle: {
         ...this.state.hoursCircle,
-        percentage: hourPercentage * 100
+        percentage: dayPercentage * 100
       },
       minutesCircle: {
         ...this.state.minutesCircle,
-        percentage: minutePercentage * 100
+        percentage: hourPercentage * 100
       },
       secondsCircle: {
         ...this.state.secondsCircle,
-        percentage: secondPercentage * 100
+        percentage: minutePercentage * 100
       }
     });
   }
